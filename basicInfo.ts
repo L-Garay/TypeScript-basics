@@ -3,11 +3,12 @@
 // any (want to avoid)
 let anyVariable: any = 35;
 let anyVariable2: any = true;
-let anyVariable3: any = "Hello World";
+let anyVariable3: any = 'Hello World';
 
 // using multiple types (want to avoid when possible)
 let multipleVariable: boolean | number = 35; /* Could also be 'true*/
-let multipleVariable2: number | string = "Hello World"; /* Could also be 35*/
+let multipleVariable2: number | string = 'Hello World'; /* Could also be 35*/
+console.log(multipleVariable2);
 
 // Implicit versus Explicit
 const explicitVariable: number[] = [1, 2, 3];
@@ -19,23 +20,29 @@ if (variableName instanceof className) {
 }
 
 // To cast a variable to a specific type
-let notAString: any = "Hello World";
+let notAString: any = 'Hello World';
 let strLength = (notAString as string).length;
 let strLength2 = (<string>notAString).length;
 
+// Numbers - are flaoting point values, can be binary and hex values
+let num: number = 0.222;
+let hex: number = 0xbeef;
+let bin: number = 0b0010;
+
 // Arrays
 let numArray: number[] = [1, 2, 3];
-let multipleArray: (number | string)[] = [1, 2, "Hello"];
+let numArray2: Array<number> = [1, 2, 3];
+let multipleArray: (number | string)[] = [1, 2, 'Hello'];
 let nestedArray: number[][] = [
   [1, 2],
   [3, 4],
 ];
 
-// Tuple
-const tupleArray: [string, number] = ["Hello", 35];
+// Tuple - like an array, but you define what type of data is stored in each position
+const tupleArray: [string, number] = ['Hello', 35, 'World', 45, '!', 55];
 const tupleArray2: [string, number] = [
   35,
-  "Hello World",
+  'Hello World',
 ]; /*Has to be in decleration order */
 
 // Enums - allow you to define a set of named constants, can be numbers or strings
@@ -50,9 +57,9 @@ enum exampleNumEnum2 /*will automatically index starting at 0*/ {
   bird,
 }
 enum exampleStrEnum {
-  dog = "Milo",
-  cat = "Whiskers",
-  bird = "Stupid",
+  dog = 'Milo',
+  cat = 'Whiskers',
+  bird = 'Stupid',
 }
 const animalAsNumber: number = exampleNumEnum2.dog; /* 0 */
 const animalAsString: string = exampleNumEnum2[1]; /* cat */
@@ -81,14 +88,14 @@ function neverExample(): never {
 }
 
 // Using interfaces
-import { IPerson } from "./person.interface";
+import { IPerson } from './person.interface';
 const examplePerson: IPerson = {
-  firstName: "Jack",
-  lastName: "Black",
+  firstName: 'Jack',
+  lastName: 'Black',
   age: 123456,
 }; /* initialise variable as type IPerson*/
-examplePerson.firstName = "Logan"; /* set new values to IPerson variable*/
-examplePerson.lastName = "Garay";
+examplePerson.firstName = 'Logan'; /* set new values to IPerson variable*/
+examplePerson.lastName = 'Garay';
 examplePerson.age = 22;
 
 // If you need to import multiple interfaces, to save lines of code use a 'barrel'
@@ -96,30 +103,30 @@ import {
   IDog,
   ICat,
   IBird,
-} from "./interfaces"; /* For some reason, don't need to include 'interfaces.index' */
+} from './interfaces'; /* For some reason, don't need to include 'interfaces.index' */
 const exampleIDog: IDog = { age: 10 };
-const exampleICat: ICat = { name: "Whiskers" };
+const exampleICat: ICat = { name: 'Whiskers' };
 const exampleIBird: IBird = { canFly: false };
 
 // Intersection types - allows you to create an object or variable of multiple types
 let dogCatBird: IDog & ICat & IBird;
 dogCatBird.age = 50;
-dogCatBird.name = "Creature";
+dogCatBird.name = 'Creature';
 dogCatBird.canFly = true;
 
 // Using Classes
-import { Person } from "./person.model";
+import { Person } from './person.model';
 const person1: Person = new Person();
-person1.firstName = "Logan";
+person1.firstName = 'Logan';
 
 const person2: Person = new Person({ age: 22 });
-person2.lastName = "Garay";
+person2.lastName = 'Garay';
 
 // Generics - use the type 'T' - used when you will pass multiple data types or don't know the specific type being passed
 function exampleGeneric<T>(arg: T): T {
   return arg;
 }
-exampleGeneric("Hello World");
+exampleGeneric('Hello World');
 
 function exampleGeneric2<T>(arg: T[]): T[] {
   return arg;
